@@ -1,0 +1,20 @@
+//2558. Take Gifts From the Richest Pile
+class Solution {
+    public long pickGifts(int[] gifts, int k) {
+        PriorityQueue<Integer> heap = new PriorityQueue<>(Collections.reverseOrder());
+        for( int nums : gifts){
+            heap.add(nums);
+        }
+        for(int i =0;i<k && heap.peek()>1;i++){
+            int current = heap.poll();
+            heap.add((int ) Math.sqrt(current));
+
+        }
+        long sums =0;
+        for(int vals : heap){
+            sums+=vals;
+        }
+        return sums;
+        
+    }
+}
